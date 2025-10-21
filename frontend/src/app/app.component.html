@@ -1,0 +1,32 @@
+<div class="container">
+  <h1>Interview Prep Tracker (Demo)</h1>
+
+  <div class="search">
+    <input type="text" [(ngModel)]="q" placeholder="Search company or role" />
+    <button (click)="search()">Search</button>
+  </div>
+
+  <div class="create">
+    <h3>Add application</h3>
+    <input [(ngModel)]="newApp.company" placeholder="Company" />
+    <input [(ngModel)]="newApp.roleTitle" placeholder="Role" />
+    <button (click)="create()">Add</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>Company</th><th>Role</th><th>Stage</th><th>Priority</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let app of list">
+        <td>{{app.company}}</td>
+        <td>{{app.roleTitle}}</td>
+        <td>{{app.stage || '-'}}</td>
+        <td>{{app.priority}}</td>
+        <td>
+          <button (click)="delete(app.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
