@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment'; // adjust path if needed
 
 export interface JobApplication {
   id?: number;
@@ -17,7 +18,8 @@ export interface JobApplication {
   providedIn: 'root'
 })
 export class ApiService {
-  private base = '/api/applications';
+  // Use configured base URL in production; during local dev keep '/api' (proxy) if environment.apiBaseUrl is empty
+  private base = environment.apiBaseUrl?.length ? `${environment.apiBaseUrl}/api/applications` : '/api/applications';
 
   constructor(private http: HttpClient) { }
 
